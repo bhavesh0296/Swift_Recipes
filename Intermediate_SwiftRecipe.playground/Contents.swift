@@ -1,5 +1,4 @@
 import UIKit
-
 /*:
 ## Interview Question
  **Build a highter ordre funcatino just like Map, or Build its clone**
@@ -22,6 +21,19 @@ var stringList = list.mapClone { (value) in
 }
 
 print(stringList)
+
+
+/*:
+## Interview Question
+ **Give the dictionary of the character count into a String**
+*/
+
+let textInputString = "The quick brown fox jumps over the lazy little dog."
+
+var dictCharacterCount = textInputString.reduce(into: [:]) {
+    $0[$1, default: 0] += 1
+}
+print(dictCharacterCount)
 
 
 /*:
@@ -809,3 +821,508 @@ let bUnicode = "You really \u{2665} Swift, don't you?"
 
 print(aUnicode)
 print(aUnicode)
+
+
+
+
+/*:
+ ## Problem 8-1
+
+ **I want to append an array to an existing array..**
+*/
+
+let arr1 = [3, 4, 5]
+let arr2 = [9, 10, 11]
+var appendArray = arr1 + arr2
+print(appendArray)
+
+
+/*:
+ ## Problem 8-2
+
+ **I want to append an item to an existing array..**
+*/
+
+appendArray.append(100)
+print(appendArray)
+
+
+
+/*:
+ ## Problem 8-3
+
+ **I want to check if an array contains a specific item.**
+*/
+
+print(appendArray.contains(100))
+
+
+
+
+
+/*:
+ ## Problem 8-4
+
+ **I want to check if an array is empty.**
+*/
+
+print(appendArray.isEmpty)
+
+
+
+
+/*:
+ ## Problem 8-5
+
+ **I want to check if an object is of type Array.**
+*/
+
+print(appendArray is [Int])
+
+
+/*:
+ ## Problem 8-6
+
+ **
+ I want to check if two different arrays are equal..**
+*/
+
+let checkArray = [1, 2, 3]
+let checkArray2 = [1, 2, 3]
+
+print(checkArray == checkArray2)
+
+
+
+
+/*:
+ ## Problem 8-7
+
+ **I want to check if two different tuples are equal..**
+*/
+
+let tuple1 = (20, "Bhavesh")
+let tuple2 = (20, "Bhavesh")
+print(tuple1 == tuple2)
+
+
+
+/*:
+ ## Problem 8-8
+
+ **I want to combine two different arrays into an array of tuples, with the elements from both of the initial arrays..**
+ ## Important: Into this you get used zip and map function
+*/
+
+let combineArray = zip(arr1, arr2).map { ($0, $1)}
+print(combineArray)
+
+
+/*:
+ ## Problem 8-9
+
+ ** I want to combine two different arrays into one dictionary, containing the elements from both of the initial arrays, in the form of key-value pairs.**
+
+ ##Important:
+*/
+
+var dict: [Int:Int] =  [:]
+zip(arr1, arr2).forEach { dict[$0] = $1 }
+print(dict)
+
+let dictReduce = zip(arr1, arr2).reduce(into: [:]) {
+    $0[$1.0] = $1.1
+}
+
+print(dictReduce)
+
+
+/*:
+ ## Problem 8-10
+
+ **I want to concatenate two different arrays.**
+*/
+
+let concatArray = arr1 + arr2
+print(concatArray)
+
+
+
+
+/*:
+ ## Problem 8-11
+
+ **I want to convert an array to an enumerated sequence.**
+*/
+
+let enumaredArray = concatArray.enumerated()
+for (index, value) in enumaredArray {
+    print("\(index): \(value)")
+}
+
+/*:
+ ## Problem 8-12
+
+ **I want to convert an array to its JSON string representation.**
+
+ ## Important:
+*/
+
+var jsonValue = concatArray
+
+do {
+    let json = try JSONSerialization.data(withJSONObject: jsonValue, options: .prettyPrinted)
+    let stringJson = String(data: json, encoding:  .utf8)
+    print(stringJson ?? "")
+
+
+} catch let error {
+    print(error.localizedDescription)
+}
+
+/*:
+ ## Problem 8-13
+
+ **I want to convert an array to an enumerated sequence.**
+*/
+
+
+
+
+
+/*:
+ ## Problem 8-11
+
+ **I want to convert an array to an enumerated sequence.**
+*/
+
+
+
+
+
+
+/*:
+ ## Problem 8-11
+
+ **I want to convert an array to an enumerated sequence.**
+*/
+
+
+
+
+
+
+/*:
+ ## Problem 8-11
+
+ **I want to convert an array to an enumerated sequence.**
+*/
+
+
+
+
+
+/*:
+ ## Problem 8-11
+
+ **I want to convert an array to an enumerated sequence.**
+*/
+
+
+
+
+
+/*:
+ ## Problem 8-11
+
+ **I want to convert an array to an enumerated sequence.**
+*/
+let arrayList = ["one", "Two", "Three", "Four", "Five"]
+
+for (index, element) in arrayList.enumerated() {
+    print("\(index): \(element)")
+}
+
+
+/*:
+ ## Problem 8-12
+
+ **I want to convert an array to its JSON string representation.**
+*/
+
+if let jsonString = try? JSONSerialization.data(withJSONObject: arrayList, options: .prettyPrinted) {
+    print(jsonString)
+    print(String(data: jsonString, encoding: .utf8) ?? "")
+}
+
+
+/*:
+ ## Problem 8-13
+
+ **I want to convert a JSON string representation to an Array object.**
+*/
+
+let jsonString = """
+[
+  "one",
+  "Two",
+  "Three",
+  "Four",
+  "Five",
+"akjsdhf"
+]
+"""
+
+if let data = jsonString.data(using: .utf8) {
+    if let jsonList = try? JSONSerialization.jsonObject(with: data, options: []) as? [String] {
+        print(jsonList)
+    }
+}
+
+
+/*:
+ ## Problem 8-14
+
+ **I want to create a String object from a given Character Array..**
+*/
+
+let arr : [Character] = ["H", "e", "l", "l", "o", "!"]
+
+let valueString = String(arr)
+
+print(valueString)
+
+
+/*:
+ ## Problem 8-15
+
+ **I want to create an array from a given range.**
+*/
+
+let rangeArray = Array(0...10)
+print(rangeArray)
+
+
+
+/*:
+ ## Problem 8-16
+
+ **I want to create an array from a given stride.**
+*/
+
+let strideRange = stride(from: 0, to: 10, by: 2)
+
+let arrayStride = Array(strideRange)
+print(arrayStride)
+
+
+/*:
+ ## Problem 8-17, 8-18
+
+ **I want to create an array from an Array literal.**
+
+ **Create an empty array**
+*/
+
+let arrayLiteral = [1, 2, 3, 3, 4, 6, 8, 8]
+
+
+/*:
+ ## Problem 8-19
+
+ **I want to create an NSArray object from a given array.**
+
+*/
+
+let nsArray = NSArray(array: arrayLiteral)
+print(nsArray)
+
+
+/*:
+ ## Problem 8-20
+
+ **I want to create a set from an Array literal.**
+
+*/
+
+let setLiteranl: Set<Int> = Set(arrayLiteral)
+print(setLiteranl)
+
+
+/*:
+ ## Problem 8-21
+
+ **I want to filter a given array’s elements by a specific condition.**
+
+*/
+
+let filterEvenArray = arrayLiteral.filter { $0 % 2 == 0}
+print(filterEvenArray)
+
+
+
+
+
+/*:
+ ## Problem 8-22
+
+ **I want to get an array element at a specific index.**
+
+*/
+
+let arrayAtIndex = arrayLiteral[2]
+print(arrayAtIndex)
+
+
+
+/*:
+ ## Problem 8-23
+
+ **I want to retrieve the values in a given dictionary as an array.**
+
+*/
+
+let dictLiteral: [String: String] = ["Name" : "Bhavesh",
+                                     "Age": "20",
+                                     "Profession": "iOS App Developer"]
+
+let dictValuesList = dictLiteral.values
+print(dictValuesList)
+
+
+
+
+
+
+/*:
+ ## Problem 8-24
+
+ **I want to get an array of valid indices for a given array..**
+
+*/
+
+let validIndcides = arrayLiteral.indices
+print(validIndcides)
+
+
+
+
+/*:
+ ## Problem 8-25
+
+ **I want to get the total capacity of a given array.**
+
+  #### Note the capacity of an array is not necessarily the same as the number of elements it currently contains.
+
+*/
+
+let arrayCapacity = arrayLiteral.capacity
+
+print(arrayCapacity)
+
+
+
+/*:
+ ## Problem 8-26, 8-29
+
+ **I want to get the index of a specific element in a given array by its value.**
+
+*/
+
+let indexForValue = arrayLiteral.index(of: 8) //arrayLiteral.firstIndex(of: 8)
+print(indexForValue)
+
+/*:
+ ## Problem 8-27
+
+ **I want to get an array’s first element.**
+
+*/
+
+print(arrayLiteral.first)
+
+
+/*:
+ ## Problem 8-28
+
+ **I want to retrieve the first elements from a given array.**
+
+*/
+
+let firstIndexElements = arrayLiteral[0..<4]
+print(firstIndexElements)
+
+
+let firstIndexElements2 = arrayLiteral.prefix(3)
+print(firstIndexElements2)
+
+
+/*:
+ ## Problem 8-31
+
+ **I want to get the last element of a given array.**
+
+*/
+
+print(arrayLiteral.last)
+
+
+
+/*:
+ ## Problem 8-32
+
+ **I want to retrieve the last elements from a given array.**
+
+*/
+
+print(arrayLiteral.suffix(3))
+
+
+
+/*:
+ ## Problem 8-33, 8-34
+
+ **I want to retrieve the maximum value from a number array.**
+
+ **I want to retrieve the minimum value from a number array.**
+
+*/
+
+print(arrayLiteral.max())
+print(arrayLiteral.min())
+
+/*:
+ ## Problem 8-35
+
+ **I want to retrieve a random element from a given array.**
+
+*/
+
+let randomElement = arrayLiteral.randomElement()
+
+print(randomElement)
+
+/*:
+ ## Problem 8-36
+
+ **I want to get the size of a given array..**
+
+*/
+
+print(arrayLiteral.count)
+
+
+/*:
+ ## Problem 8-37
+
+ **I want to get the index of a specific element in a given array by its value.**
+
+*/
+
+
+/*:
+ ## Problem 8-26
+
+ **I want to get the index of a specific element in a given array by its value.**
+
+*/
