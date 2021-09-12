@@ -1355,3 +1355,78 @@ print("Welcome Please enter your name")
 //if let name = readLine() {
 //    print("Hello, \(name)")
 //}
+
+
+/*:
+ # More Advanced Topics
+
+ ## Problem 13-4
+
+ **I want to create some specific delay..**
+
+*/
+
+print("It is going delay after this statement")
+sleep(2)
+print("Delay is over")
+
+
+/*:
+ ## Problem 13-5
+
+ **I want to defer the execute of a specific block of code.**
+
+*/
+
+func doDeferSomething() {
+    defer {
+        // this is defer block that always executed
+        print("Executing leaving the function")
+    }
+
+    for i in 1...10{
+        print("value: \(i)")
+    }
+}
+
+doDeferSomething()
+
+
+/*:
+ ## Problem 13-7
+
+ **I want to be able to observe the value changes of a specific variable.**
+
+ Rule of tump is that into willSet value is going to set, so that we get newValue into it
+
+ Into didSet value is get set so we get oldValue into it
+
+*/
+
+var temperature = 20 {
+    willSet {
+        print("Temperature is about to change from \(temperature) to \(newValue)")
+    }
+
+    didSet {
+        print("Tempeatre is changed from \(oldValue) to \(temperature)")
+    }
+}
+
+temperature = 30
+
+/*:
+ ## Problem 13-8
+
+ **I want to cache some data.**
+
+*/
+
+var cache = NSCache<NSString, NSString>()
+cache.setObject(NSString(string: "Hey"), forKey: "HEY" as NSString)
+cache.setObject(NSString(string: "Hello"), forKey: "HELLO" as NSString)
+
+
+if let cachedHEY = cache.object(forKey: "HEY"){
+    print(cachedHEY)
+}
