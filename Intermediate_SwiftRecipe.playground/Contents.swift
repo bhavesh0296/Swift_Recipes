@@ -1702,3 +1702,266 @@ for element in setRemoveDuplicate {
 
 setRemoveDuplicate.removeAll()
 print(setRemoveDuplicate)
+
+
+
+
+/*:
+
+ # Dictionary
+
+
+ ## Problem 9-1
+
+ **I want to add a key-value pair to an existing dictionary**
+
+*/
+
+
+var myDict: [String: String] = [:]
+
+myDict["Name"] = "Bhavesh"
+print(myDict)
+
+
+
+/*:
+ ## Problem 9-2
+
+ **I want to check if a dictionary is empty.**
+
+*/
+
+print(myDict.isEmpty)
+
+/*:
+ ## Problem 9-3
+
+ **I want to check if a specific key exists in a given dictionary.**
+
+*/
+
+if let _ = myDict["name"] {
+    print("key exits")
+} else {
+    print("key not exits")
+}
+
+
+
+/*:
+ ## Problem 9-4
+
+ **I want to check if a given object is of type dictionary.**
+
+*/
+
+if myDict is [String:String] {
+    print("It is dictionary Type")
+} else {
+    print("It is not dictionary type")
+}
+
+
+
+/*:
+ ## Problem 9-5
+
+ **I want to check if two different dictionaries are equal.**
+
+*/
+
+let myDict2 = myDict
+
+print(myDict2 == myDict)
+
+/*:
+ ## Problem 9-6
+
+ **I want to convert a given dictionary to an array of key-value tuples.**
+
+*/
+
+var myDictTupleList = myDict.map { ($0, $1) }
+print(myDictTupleList)
+
+/*:
+ ## Problem 9-7
+
+ **I want to convert a dictionary object to its corresponding JSON string representation.**
+
+*/
+
+if let jsonData = try? JSONSerialization.data(withJSONObject: myDict, options: .prettyPrinted) {
+    let jsonString = String(data: jsonData, encoding: .utf8) ?? ""
+    print(jsonString)
+}
+
+/*:
+ ## Problem 9-8
+
+ ****
+
+*/
+
+let jsonStringDict = """
+{ "name" : "Bhavesh", "surname" : "gupta", "age" : "26" }
+"""
+
+
+
+if let data = jsonStringDict.data(using: .utf8),
+    let myDict3 = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: String] {
+    print("my converted dictionary")
+    print(myDict3)
+}
+
+
+
+/*:
+ ## Problem 9-9, 9-10
+
+ **I want to create a dictionary object from a dictionary literal.**
+
+ **I want to create an empty dictionary object.**
+
+*/
+
+var myDict4 = ["Name": "Bhavesh"]
+print(myDict4)
+
+let emptyDict: [String: String] = [:]
+print(emptyDict)
+
+/*:
+ ## Problem 9-11
+
+ **I want to create an NSDictionary object from a dictionary.**
+
+*/
+
+let nsDict = NSDictionary(dictionary: myDict)
+print(nsDict)
+
+/*:
+ ## Problem 9-12, 9-13
+
+ **I want to get a given dictionary’s keys as an array.**
+
+ **I want to get the value of a specific key from a given dictionary.**
+
+*/
+
+let keysArray = Array(myDict4.keys)
+print(keysArray)
+
+let valueArray = Array(myDict4.values)
+print(valueArray)
+
+/*:
+ ## Problem 9-14
+
+ **I want to get the size of a given dictionary.**
+
+*/
+
+print(myDict4.count)
+
+
+/*:
+ ## Problem 9-15
+
+ **I want to get the size of a given dictionary.**
+
+*/
+
+for (key, value) in myDict4 {
+    print("\(key): \(value)")
+}
+
+
+
+/*:
+ ## Problem 9-16
+
+
+ **I want to merge two different dictionaries into a new one.**
+
+ ## IMPORTANT: THis have to check it
+
+*/
+
+/// her merging using a loop
+for (key, value) in myDict2 {
+    myDict[key] = value
+}
+print(myDict)
+
+
+
+/*:
+ ## Problem 9- 17
+
+ **Read contents of Plist from file into dictionary**
+
+*/
+
+// for this you must have a plist file
+
+if let data = try? Data(contentsOf: URL(fileURLWithPath: "myPlistFile")) {
+    var format = PropertyListSerialization.PropertyListFormat.xml
+    let dict = try? PropertyListSerialization.propertyList(from: data,
+                                                           options: [],
+                                                           format: &format) as? [String: String]
+
+    print(dict ?? "error convering list")
+}
+
+
+
+
+/*:
+ ## Problem 9-18
+
+ **I want to read the contents of a Property List (Plist) string into a dictionary object.**
+
+*/
+
+// this string contains plist data
+let plistDataString = ""
+
+
+var format = PropertyListSerialization.PropertyListFormat.xml
+
+if let data = plistDataString.data(using: .utf8),
+    let dict = try? PropertyListSerialization.propertyList(from: data, options: [], format: &format) as? [String: String] {
+    print(dict)
+}
+
+/*:
+ ## Problem 9-19
+
+ **I want to remove all elements from a given dictionary.**
+
+*/
+
+myDict4.removeAll()
+print(myDict4)
+
+/*:
+ ## Problem 9-20
+
+ **I want to remove a specific item from a given dictionary, by its key.**
+
+*/
+myDict["Name"] = nil
+myDict4.removeValue(forKey: "Name")
+/*:
+ ## Problem 9-21
+
+ **I want to set the value of a specific key in a given dictionary.**
+
+*/
+myDict["Profession"] = "mobile Developer"
+print(myDict)
+
