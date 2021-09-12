@@ -787,787 +787,571 @@ let aValue = 4
 /*:
  # Web, Files, and System
 
- ## Problem 12-
-
- ****
-
-*/
-
-/*:
- ## Problem 12-
-
- ****
-
-*/
-
-/*:
- ## Problem 12-
-
- ****
-
-*/
-
-/*:
- ## Problem 12-
-
- ****
-
-*/
-
-/*:
- ## Problem 12-
-
- ****
-
-*/
-
-/*:
- ## Problem 12-
-
- ****
-
-*/
-
-/*:
- ## Problem 12-
-
- ****
-
-*/
-
-/*:
- ## Problem 12-
-
- ****
-
-*/
-
-/*:
- ## Problem 12-
-
- ****
-
-*/
-
-/*:
- ## Problem 12-
-
- ****
-
-*/
-
-/*:
- ## Problem 12-
-
- ****
-
-*/
-
-/*:
- ## Problem 12-
-
- ****
-
-*/
-
-/*:
- ## Problem 12-
-
- ****
-
-*/
-
-/*:
- ## Problem 12-
-
- ****
-
-*/
-/*:
- ## Problem 12-
-
- ****
-
-*/
-
-/*:
- ## Problem 12-
-
- ****
-
-*/
-
-/*:
- ## Problem 12-
-
- ****
-
-*/
-
-/*:
- ## Problem 12-
-
- ****
-
-*/
-
-/*:
- ## Problem 12-
-
- ****
-
-*/
-
-/*:
- ## Problem 12-
-
- ****
-
-*/
-
-/*:
- ## Problem 12-
-
- ****
-
-*/
-
-/*:
- ## Problem 12-
-
- ****
-
-*/
-
-/*:
- ## Problem 12-
-
- ****
-
-*/
-
-/*:
- ## Problem 12-
-
- ****
-
-*/
-
-/*:
- ## Problem 12-
-
- ****
-
-*/
-
-/*:
- ## Problem 12-
-
- ****
-
-*/
-
-/*:
- ## Problem 12-
-
- ****
-
-*/
-
-/*:
- ## Problem 12-
+ ## Problem 12-1
 
- ****
+ **I want to check if a specific file exists.**
 
 */
-/*:
- ## Problem 12-
 
- ****
 
-*/
+let path = "/Users/best/Documents/Bitbucket/Practice_Project/Swift_Recipes/Advance_SwiftRecipe.playground/Sources/Hello.swift"
 
+if FileManager.default.fileExists(atPath: path) {
+    print("File Exits: \(path)")
+} else {
+    print("File not Exits: \(path)")
+}
 
 /*:
- ## Problem 12-
+ ## Problem 12-2
 
- ****
+ **I want to check if a specific file can be deleted.**
 
 */
-
-/*:
- ## Problem 12-
-
- ****
 
-*/
+if FileManager.default.isDeletableFile(atPath: path) {
+    print("File is deletable: \(path)")
+} else {
+    print("File is not deletable: \(path)")
+}
 
 /*:
- ## Problem 12-
+ ## Problem 12-3
 
- ****
+ **I want to check if a specific file can be executed.**
 
 */
-
-/*:
- ## Problem 12-
 
- ****
-
-*/
+if FileManager.default.isExecutableFile(atPath: path) {
+    print("File is executable: \(path)")
+} else {
+    print("File is not executable: \(path)")
+}
 
 /*:
- ## Problem 12-
+ ## Problem 12-4
 
- ****
+ **I want to check if a specific file can be read.**
 
 */
-
-/*:
- ## Problem 12-
 
- ****
-
-*/
+if FileManager.default.isReadableFile(atPath: path) {
+    print("File is Readable: \(path)")
+} else {
+    print("File is not Readable: \(path)")
+}
 
 /*:
- ## Problem 12-
+ ## Problem 12-5
 
- ****
+ **I want to check if a specific file can be written to.**
 
 */
-
-/*:
- ## Problem 12-
-
- ****
 
-*/
+if FileManager.default.isWritableFile(atPath: path) {
+    print("File is writable: \(path)")
+} else {
+    print("File is not writable: \(path)")
+}
 
 /*:
- ## Problem 12-
+ ## Problem 12-6
 
- ****
+ **I want to check if a given path corresponds to a folder.**
 
 */
 
-/*:
- ## Problem 12-
-
- ****
+var isFolder: ObjCBool = false
 
-*/
-
-/*:
- ## Problem 12-
+let _ = FileManager.default.fileExists(atPath: path, isDirectory: &isFolder)
 
- ****
+if isFolder.boolValue {
+    print("It is directory \(path)")
+} else {
+    print("It is not directory \(path)")
+}
 
-*/
 
 /*:
- ## Problem 12-
+ ## Problem 12-7
 
- ****
+ **I want to copy a file at a given path to another path.**
 
 */
 
-/*:
- ## Problem 12-
+let pathFrom = URL(string: "tests/fileToCopy.txt")!
+let pathTo = URL(string: "tests/new/location/fileToCopy.txt")!
 
- ****
+do {
+    try FileManager.default.copyItem(at: pathFrom, to: pathTo)
+    print("it copy successfully")
+} catch let error {
+    print(error.localizedDescription)
+}
 
-*/
 /*:
- ## Problem 12-
+ ## Problem 12-8
 
- ****
+ **I want to create a specific directory at a given path.**
 
 */
 
+do {
+    try FileManager.default.createDirectory(at: pathTo, withIntermediateDirectories: true, attributes: [:])
+    print("Directory is created")
+} catch let error {
+    print(error.localizedDescription)
+}
 
 /*:
- ## Problem 12-
-
- ****
-
-*/
-
-/*:
- ## Problem 12-
+ ## Problem 12-9
 
- ****
+ **I want to create a URL object from a given file path.**
 
 */
-
-/*:
- ## Problem 12-
 
- ****
-
-*/
+let filePath = "/var/www/html/index.html"
+let urlFilePath = URL(fileURLWithPath: filePath)
+print(urlFilePath)
 
 /*:
- ## Problem 12-
+ ## Problem 12-10
 
- ****
+ **I want to create a URL object from a given string.**
 
 */
-
-/*:
- ## Problem 12-
 
- ****
-
-*/
+let pathHttps = "https://www.google.com"
+let urlPathHttps = URL(string: pathHttps)
+print(urlPathHttps)
 
 /*:
- ## Problem 12-
-
- ****
-
-*/
+ ## Problem 12-11, 12-12
 
-/*:
- ## Problem 12-
+ **I want to delete a file at a specific file path.**
 
- ****
+ **I want to delete a folder at a specific file path.**
 
+ Same code work into both cases
 */
-
-/*:
- ## Problem 12-
-
- ****
 
-*/
+do {
+    try FileManager.default.removeItem(at: pathFrom)
+    print("File is deleted: \(pathFrom)")
+} catch let error {
+    print(error.localizedDescription)
+}
 
 /*:
- ## Problem 12-
-
- ****
+ ## Problem 12-13, 12-14, 12-15
 
-*/
+ **I want to get the file extension component of a given path string.**
 
-/*:
- ## Problem 12-
+ **I want to get the filename component of a given path string.**
 
- ****
+ **I want to get the folder component of a given path string.**
 
 */
 
-/*:
- ## Problem 12-
+let ext = urlFilePath.pathExtension
+print(ext)
 
- ****
+let fileName = urlFilePath.lastPathComponent
+print(fileName)
 
-*/
+let folderName = urlFilePath.deletingLastPathComponent().pathExtension
+print(folderName)
 
 /*:
- ## Problem 12-
+ ## Problem 12-16
 
- ****
+ **I want to get the different path components of a given path string.**
 
 */
 
-/*:
- ## Problem 12-
+let pathComponents = urlFilePath.pathComponents
 
- ****
+for component in pathComponents {
+    print(component)
+}
 
-*/
 /*:
- ## Problem 12-
+ ## Problem 12-17
 
- ****
+ **I want to get the different attributes of a given file.**
 
 */
-
-/*:
- ## Problem 12-
-
- ****
 
-*/
+do {
+    let attrs = try FileManager.default.attributesOfItem(atPath: path)
+    print("file arrtibues of \(path) is: \(attrs)")
+} catch let error {
+    print(error.localizedDescription)
+}
 
 /*:
- ## Problem 12-
+ ## Problem 12-18
 
- ****
+ **I want to get the current directory path.**
 
 */
-
-/*:
- ## Problem 12-
 
- ****
-
-*/
+let currentPath = FileManager.default.currentDirectoryPath
+print(currentPath)
 
 /*:
- ## Problem 12-
+ ## Problem 12-19
 
- ****
+ **I want to get the contents of a directory at given path as an array.**
 
 */
-
-/*:
- ## Problem 12-
 
- ****
-
-*/
+do {
+    let content = try FileManager.default.subpathsOfDirectory(atPath: currentPath)
+    print(content)
+} catch let error {
+    print(error.localizedDescription)
+}
 
 /*:
- ## Problem 12-
+ ## Problem 12-20
 
- ****
+ **I want to get the resource’s path of a given bundle.**
 
 */
-
-/*:
- ## Problem 12-
 
- ****
-
-*/
+if let path = Bundle.main.path(forResource: "Advance_SwiftRecipe", ofType: "swift") {
+    print("path is \(path)")
+} else {
+    print("path is not present for this resource")
+}
 
 /*:
- ## Problem 12-
+ ## Problem 12-21
 
- ****
-
+ **I want to get the size of a specific file.**
 */
-
-/*:
- ## Problem 12-
-
- ****
 
-*/
+do {
+    let attrs = try FileManager.default.attributesOfItem(atPath: path)
+    let fileSize = (attrs[FileAttributeKey.size] as! NSNumber).uint64Value
+    print("File size for \(path) is: \(fileSize)")
+} catch let error {
+    print(error.localizedDescription)
+}
 
 /*:
- ## Problem 12-
+ ## Problem 12-23
 
- ****
+ **I want to read the contents of a specific text file into a string.**
 
 */
-
-/*:
- ## Problem 12-
 
- ****
-
-*/
+do {
+    let contents = try String(contentsOfFile: path, encoding: .ascii)
+    print(contents)
+} catch let error {
+    print(error.localizedDescription)
+}
 
 /*:
- ## Problem 12-
+ ## Problem 12-24
 
- ****
+ **I want to read the data of a specific file.**
 
 */
 
-/*:
- ## Problem 12-
+let pathURLValue = URL(fileURLWithPath: path)
 
- ****
+if let data = try? Data(contentsOf: pathURLValue) {
+    print("Data of file \(path) is: \(data)")
+}
 
-*/
 /*:
- ## Problem 12-
-
- ****
+ ## Problem 12-25
 
-*/
-
-/*:
- ## Problem 12-
+ **I want to rename a specific file at a given path.**
 
- ****
+ Into this same move command is used
 
 */
 
-/*:
- ## Problem 12-
-
- ****
+do {
+    try FileManager.default.moveItem(at: pathFrom, to: pathTo)
+    print("yes file name is renamed")
+} catch let error {
+    print(error.localizedDescription)
+}
 
-*/
-
 /*:
- ## Problem 12-
+ ## Problem 12-26, 12-27
 
- ****
+ **I want to write some data to a specific file.**
 
 */
 
-/*:
- ## Problem 12-
-
- ****
+let stringDataToWrite = "The quick brown fox jumps over the lazy little dog"
+if let data = stringDataToWrite.data(using: .utf8) {
+    do {
+        try data.write(to: pathURLValue)
 
-*/
+    } catch let error {
+        print(error.localizedDescription)
+    }
+}
 
 /*:
- ## Problem 12-
+ ## Problem 12-28
 
- ****
+ **I want to download a specific web page’s HTML into a string.**
 
 */
 
-/*:
- ## Problem 12-
+let urlWebpage = URL(string: "https://www.google.com")!
 
- ****
+do {
+    let contents = try String(contentsOf: urlWebpage, encoding: .utf8)
+//    print(contents) // uncomment this line when wanna see that contents into the console
+} catch let error {
+    print(error.localizedDescription)
+}
 
-*/
 
 /*:
- ## Problem 12-
+ ## Problem 12-29
 
- ****
+ **I want to make an HTTP web request.**
 
 */
-
-/*:
- ## Problem 12-
-
- ****
 
-*/
+/// url for the news api with the key
+let urlString = "https://newsapi.org/v2/top-headlines?sources=engadget&apiKey=452d040207744964b395c0996a51174c"
+let url = URL(string: urlString)!
+var request = URLRequest(url: url)
+let session = URLSession(configuration: URLSessionConfiguration.default)
 
-/*:
- ## Problem 12-
+let task = session.dataTask(with: request) { (data, response, error) in
 
- ****
+    if error != nil {
+        print("error occured: \(error!.localizedDescription)")
+    } else {
+        if let response = response {
+            print("Response is: \(response)")
+        }
 
-*/
+        if let data = data,
+            let dataString = String(data: data, encoding: .utf8) {
+            print("Data Value: \(dataString)")
+        }
+    }
+}
 
-/*:
- ## Problem 12-
+//task.resume() // uncomment this to run this request
 
- ****
 
-*/
 
 /*:
- ## Problem 12-
+ ## Problem 12-30
 
- ****
+ **I want to make an HTTP web request with custom headers.**
 
 */
-
-/*:
- ## Problem 12-
-
- ****
 
-*/
+request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+request.addValue("application/json", forHTTPHeaderField: "Accept")
 
-/*:
- ## Problem 12-
+let task2 = session.dataTask(with: request) { (data, response, error) in
 
- ****
+    if error != nil {
+        print("error occured: \(error!.localizedDescription)")
+    } else {
+        if let response = response {
+            print("Response is: \(response)")
+        }
 
-*/
-/*:
- ## Problem 12-
+        if let data = data,
+            let dataString = String(data: data, encoding: .utf8) {
+            print("Data Value: \(dataString)")
+        }
+    }
+}
 
- ****
 
-*/
+//task2.resume() // uncomment it to run this request
 
 /*:
- ## Problem 12-
+ ## Problem 12-31
 
- ****
+ **I want to make an HTTP web request with JSON data.**
 
 */
-
-/*:
- ## Problem 12-
 
- ****
-
-*/
+let jsonBody = ["name":"John", "surname":"Doe"] as Dictionary<String, String>
+let jsonData = try? JSONSerialization.data(withJSONObject: jsonBody)
 
-/*:
- ## Problem 12-
+request.httpMethod = "POST"
+request.httpBody = jsonData
 
- ****
+// remaining remains same of previos two example
 
-*/
 
 /*:
- ## Problem 12-
+ ## Problem 12-34
 
- ****
+ **I want to get the identifier of a specific bundle.**
 
 */
-
-/*:
- ## Problem 12-
 
- ****
+if let id = Bundle.main.bundleIdentifier{
+    print("Bundle Identifier is \(id)")
+} else {
+    print("Bundle Identifier is nil")
+}
 
-*/
-
 /*:
- ## Problem 12-
+ ## Problem 12-35
 
- ****
+ **I want to be able to process the individual command line arguments passed to my application.**
 
 */
-
-/*:
- ## Problem 12-
 
- ****
+let args = CommandLine.arguments
+print(args)
 
-*/
-
 /*:
- ## Problem 12-
+ ## Problem 12-36
 
- ****
+ **I want to get the executables’ path of a specific bundle.**
 
 */
 
-/*:
- ## Problem 12-
+if let pathExecutable = Bundle.main.executablePath {
+    print("Executable Path: \(pathExecutable)")
+} else {
+    print("Executable path is not present")
+}
 
- ****
-
-*/
 
 /*:
- ## Problem 12-
+ ## Problem 12-37
 
- ****
+ **I want to get the frameworks’ path of a specific bundle.**
 
 */
-
-/*:
- ## Problem 12-
 
- ****
+if let frameworkPath = Bundle.main.privateFrameworksPath {
+    print("Framework path of Bundle is: \(frameworkPath)")
+} else {
+    print("Framework path is not present")
+}
 
-*/
+if let frameworkPath = Bundle.main.sharedFrameworksPath {
+    print("Share Framework path of Bundle is: \(frameworkPath)")
+} else {
+    print("Framework path is not present")
+}
 
 /*:
- ## Problem 12-
+ ## Problem 12-38
 
- ****
+ **I want to get the Home directory path for the current user.**
 
 */
 
-/*:
- ## Problem 12-
-
- ****
+let homeDirectory = NSHomeDirectory()
+print("Home Directory: \(homeDirectory)")
 
-*/
 /*:
- ## Problem 12-
+ ## Problem 12-39
 
- ****
+ **I want to get the Home directory path for a specific user.**
 
 */
-
-/*:
- ## Problem 12-
-
- ****
 
-*/
+if let homeDirectoryForSpecificUser = NSHomeDirectoryForUser("user") {
+    print("Home Directory For Specific User: \(homeDirectoryForSpecificUser)")
+} else {
+    print("Directory is not present for specific user")
+}
 
 /*:
- ## Problem 12-
+ ## Problem 12-40
 
- ****
+ **I want to get the main path of a given bundle.**
 
 */
-
-/*:
- ## Problem 12-
-
- ****
 
-*/
+let mainBundlePath = Bundle.main.bundlePath
+print("Main Bundle Path: \(mainBundlePath)")
 
 /*:
- ## Problem 12-
+ ## Problem 12-41
 
- ****
+ **I want to get the system’s default currency code.**
 
 */
-
-/*:
- ## Problem 12-
 
- ****
-
-*/
+let locale = Locale.current
+if let currency = locale.currencyCode {
+    print("Currency code is \(currency)")
+} else {
+    print("Currency code is not present")
+}
 
 /*:
  ## Problem 12-
 
- ****
+ **I want to get the system’s default language code.**
 
 */
-
-/*:
- ## Problem 12-
 
- ****
+if let systemLanguage = locale.languageCode {
+    print("System Language code is: \(systemLanguage)")
+} else {
+    print("System Language code is not present")
+}
 
-*/
-
 /*:
- ## Problem 12-
+ ## Problem 12-43
 
- ****
+ **I want to get the system’s default region code.**
 
 */
-
-/*:
- ## Problem 12-
-
- ****
 
-*/
+if let regionCode = locale.regionCode {
+    print("System region code is: \(regionCode)")
+} else {
+    print("System region code is not present")
+}
 
 /*:
- ## Problem 12-
+ ## Problem 12-44
 
- ****
+ **I want to get the system’s default temporary directory path.**
 
 */
-
-/*:
- ## Problem 12-
-
- ****
 
-*/
+let systemTempDirectory = NSTemporaryDirectory()
+print("System temperory Directory: \(systemTempDirectory)")
 
 /*:
- ## Problem 12-
+ ## Problem 12-45
 
- ****
+ **I want to get the username of the current user.**
 
 */
-
-/*:
- ## Problem 12-
 
- ****
+let currentUserName = NSUserName()
+print("System current User Name: \(currentUserName)")
 
-*/
 /*:
- ## Problem 12-
+ ## Problem 12-46
 
- ****
+ **I want to be able to get user input from the command line.**
 
 */
 
+print("Welcome Please enter your name")
+//if let name = readLine() {
+//    print("Hello, \(name)")
+//}
