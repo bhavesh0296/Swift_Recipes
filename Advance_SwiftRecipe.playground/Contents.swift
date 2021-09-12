@@ -655,12 +655,12 @@ print(monthName)
 
 */
 
-let aDate = Date()
-sleep(2)
-let bDate = Date()
-
-let secondsDiff = Calendar.current.dateComponents([.second], from: aDate, to: bDate)
-print(secondsDiff)
+//let aDate = Date()
+//sleep(2)
+//let bDate = Date()
+//
+//let secondsDiff = Calendar.current.dateComponents([.second], from: aDate, to: bDate)
+//print(secondsDiff)
 
 /*:
  ## Problem 10-59
@@ -682,3 +682,892 @@ print(unixTimeStamp)
 
 let yearValue = Calendar.current.component(.year, from: now)
 print(yearValue)
+
+
+
+/*:
+
+ # Exceptions
+
+ ## Problem 11-1, 11-3
+
+ **I want to create a new custom error type**
+
+ **I want to create a new custom error type with different associated values.**
+
+*/
+
+enum MyCustomError: Error {
+    case invalid
+    case valueNotCorrect(Int)
+}
+
+extension MyCustomError {
+    var localizedDescription: String {
+        return "Error occured"
+    }
+}
+
+extension MyCustomError: LocalizedError {
+    var errorDescription: String? {
+
+        switch self {
+        case .invalid:
+            return "invalid error occured"
+        case .valueNotCorrect(let value):
+            return "value not correct: \(value)"
+        }
+    }
+}
+
+/*:
+ ## Problem 11-2
+
+ **I want to throw and catch a new custom error type.**
+
+*/
+
+do {
+    throw MyCustomError.invalid
+} catch let error {
+    print(error.localizedDescription)
+}
+
+do {
+    throw MyCustomError.valueNotCorrect(90)
+} catch let error {
+    print(error.localizedDescription)
+}
+
+/*:
+ ## Problem 11-4, 11-6
+
+ **I want to call a throwing function and catch some custom error type.**
+
+ **I want to create a throwing function with various guard statements and catch a custom error type.**
+
+*/
+
+func validateAgeForVote(_ age: Int) throws -> Bool {
+    guard age > 18  else {
+        throw MyCustomError.valueNotCorrect(age)
+    }
+    return true
+}
+
+do {
+    try validateAgeForVote(15)
+} catch {
+    print(error.localizedDescription)
+}
+
+
+/*:
+ ## Problem 11-5
+
+ **I want to call a throwing function and convert the different errors to optional values.**
+
+*/
+
+if let result = try? validateAgeForVote(19) {
+    print(result)
+}
+
+/*:
+ ## Problem 11-7
+
+ **I want to write different assertions based on some given conditions.**
+
+*/
+
+let aValue = 4
+//assert(aValue > 10, "\(a) is not greater than 10") // this statement is useful during testing
+
+
+/*:
+ # Web, Files, and System
+
+ ## Problem 12-
+
+ ****
+
+*/
+
+/*:
+ ## Problem 12-
+
+ ****
+
+*/
+
+/*:
+ ## Problem 12-
+
+ ****
+
+*/
+
+/*:
+ ## Problem 12-
+
+ ****
+
+*/
+
+/*:
+ ## Problem 12-
+
+ ****
+
+*/
+
+/*:
+ ## Problem 12-
+
+ ****
+
+*/
+
+/*:
+ ## Problem 12-
+
+ ****
+
+*/
+
+/*:
+ ## Problem 12-
+
+ ****
+
+*/
+
+/*:
+ ## Problem 12-
+
+ ****
+
+*/
+
+/*:
+ ## Problem 12-
+
+ ****
+
+*/
+
+/*:
+ ## Problem 12-
+
+ ****
+
+*/
+
+/*:
+ ## Problem 12-
+
+ ****
+
+*/
+
+/*:
+ ## Problem 12-
+
+ ****
+
+*/
+
+/*:
+ ## Problem 12-
+
+ ****
+
+*/
+/*:
+ ## Problem 12-
+
+ ****
+
+*/
+
+/*:
+ ## Problem 12-
+
+ ****
+
+*/
+
+/*:
+ ## Problem 12-
+
+ ****
+
+*/
+
+/*:
+ ## Problem 12-
+
+ ****
+
+*/
+
+/*:
+ ## Problem 12-
+
+ ****
+
+*/
+
+/*:
+ ## Problem 12-
+
+ ****
+
+*/
+
+/*:
+ ## Problem 12-
+
+ ****
+
+*/
+
+/*:
+ ## Problem 12-
+
+ ****
+
+*/
+
+/*:
+ ## Problem 12-
+
+ ****
+
+*/
+
+/*:
+ ## Problem 12-
+
+ ****
+
+*/
+
+/*:
+ ## Problem 12-
+
+ ****
+
+*/
+
+/*:
+ ## Problem 12-
+
+ ****
+
+*/
+
+/*:
+ ## Problem 12-
+
+ ****
+
+*/
+
+/*:
+ ## Problem 12-
+
+ ****
+
+*/
+/*:
+ ## Problem 12-
+
+ ****
+
+*/
+
+
+/*:
+ ## Problem 12-
+
+ ****
+
+*/
+
+/*:
+ ## Problem 12-
+
+ ****
+
+*/
+
+/*:
+ ## Problem 12-
+
+ ****
+
+*/
+
+/*:
+ ## Problem 12-
+
+ ****
+
+*/
+
+/*:
+ ## Problem 12-
+
+ ****
+
+*/
+
+/*:
+ ## Problem 12-
+
+ ****
+
+*/
+
+/*:
+ ## Problem 12-
+
+ ****
+
+*/
+
+/*:
+ ## Problem 12-
+
+ ****
+
+*/
+
+/*:
+ ## Problem 12-
+
+ ****
+
+*/
+
+/*:
+ ## Problem 12-
+
+ ****
+
+*/
+
+/*:
+ ## Problem 12-
+
+ ****
+
+*/
+
+/*:
+ ## Problem 12-
+
+ ****
+
+*/
+
+/*:
+ ## Problem 12-
+
+ ****
+
+*/
+/*:
+ ## Problem 12-
+
+ ****
+
+*/
+
+
+/*:
+ ## Problem 12-
+
+ ****
+
+*/
+
+/*:
+ ## Problem 12-
+
+ ****
+
+*/
+
+/*:
+ ## Problem 12-
+
+ ****
+
+*/
+
+/*:
+ ## Problem 12-
+
+ ****
+
+*/
+
+/*:
+ ## Problem 12-
+
+ ****
+
+*/
+
+/*:
+ ## Problem 12-
+
+ ****
+
+*/
+
+/*:
+ ## Problem 12-
+
+ ****
+
+*/
+
+/*:
+ ## Problem 12-
+
+ ****
+
+*/
+
+/*:
+ ## Problem 12-
+
+ ****
+
+*/
+
+/*:
+ ## Problem 12-
+
+ ****
+
+*/
+
+/*:
+ ## Problem 12-
+
+ ****
+
+*/
+
+/*:
+ ## Problem 12-
+
+ ****
+
+*/
+
+/*:
+ ## Problem 12-
+
+ ****
+
+*/
+/*:
+ ## Problem 12-
+
+ ****
+
+*/
+
+/*:
+ ## Problem 12-
+
+ ****
+
+*/
+
+/*:
+ ## Problem 12-
+
+ ****
+
+*/
+
+/*:
+ ## Problem 12-
+
+ ****
+
+*/
+
+/*:
+ ## Problem 12-
+
+ ****
+
+*/
+
+/*:
+ ## Problem 12-
+
+ ****
+
+*/
+
+/*:
+ ## Problem 12-
+
+ ****
+
+*/
+
+/*:
+ ## Problem 12-
+
+ ****
+
+*/
+
+/*:
+ ## Problem 12-
+
+ ****
+
+*/
+
+/*:
+ ## Problem 12-
+
+ ****
+
+*/
+
+/*:
+ ## Problem 12-
+
+ ****
+
+*/
+
+/*:
+ ## Problem 12-
+
+ ****
+
+*/
+
+/*:
+ ## Problem 12-
+
+ ****
+
+*/
+
+/*:
+ ## Problem 12-
+
+ ****
+
+*/
+/*:
+ ## Problem 12-
+
+ ****
+
+*/
+
+/*:
+ ## Problem 12-
+
+ ****
+
+*/
+
+/*:
+ ## Problem 12-
+
+ ****
+
+*/
+
+/*:
+ ## Problem 12-
+
+ ****
+
+*/
+
+/*:
+ ## Problem 12-
+
+ ****
+
+*/
+
+/*:
+ ## Problem 12-
+
+ ****
+
+*/
+
+/*:
+ ## Problem 12-
+
+ ****
+
+*/
+
+/*:
+ ## Problem 12-
+
+ ****
+
+*/
+
+/*:
+ ## Problem 12-
+
+ ****
+
+*/
+
+/*:
+ ## Problem 12-
+
+ ****
+
+*/
+
+/*:
+ ## Problem 12-
+
+ ****
+
+*/
+
+/*:
+ ## Problem 12-
+
+ ****
+
+*/
+
+/*:
+ ## Problem 12-
+
+ ****
+
+*/
+
+/*:
+ ## Problem 12-
+
+ ****
+
+*/
+/*:
+ ## Problem 12-
+
+ ****
+
+*/
+
+/*:
+ ## Problem 12-
+
+ ****
+
+*/
+
+/*:
+ ## Problem 12-
+
+ ****
+
+*/
+
+/*:
+ ## Problem 12-
+
+ ****
+
+*/
+
+/*:
+ ## Problem 12-
+
+ ****
+
+*/
+
+/*:
+ ## Problem 12-
+
+ ****
+
+*/
+
+/*:
+ ## Problem 12-
+
+ ****
+
+*/
+
+/*:
+ ## Problem 12-
+
+ ****
+
+*/
+
+/*:
+ ## Problem 12-
+
+ ****
+
+*/
+
+/*:
+ ## Problem 12-
+
+ ****
+
+*/
+
+/*:
+ ## Problem 12-
+
+ ****
+
+*/
+
+/*:
+ ## Problem 12-
+
+ ****
+
+*/
+
+/*:
+ ## Problem 12-
+
+ ****
+
+*/
+
+/*:
+ ## Problem 12-
+
+ ****
+
+*/
+/*:
+ ## Problem 12-
+
+ ****
+
+*/
+
+/*:
+ ## Problem 12-
+
+ ****
+
+*/
+
+/*:
+ ## Problem 12-
+
+ ****
+
+*/
+
+/*:
+ ## Problem 12-
+
+ ****
+
+*/
+
+/*:
+ ## Problem 12-
+
+ ****
+
+*/
+
+/*:
+ ## Problem 12-
+
+ ****
+
+*/
+
+/*:
+ ## Problem 12-
+
+ ****
+
+*/
+
+/*:
+ ## Problem 12-
+
+ ****
+
+*/
+
+/*:
+ ## Problem 12-
+
+ ****
+
+*/
+
+/*:
+ ## Problem 12-
+
+ ****
+
+*/
+
+/*:
+ ## Problem 12-
+
+ ****
+
+*/
+
+/*:
+ ## Problem 12-
+
+ ****
+
+*/
+
+/*:
+ ## Problem 12-
+
+ ****
+
+*/
+
+/*:
+ ## Problem 12-
+
+ ****
+
+*/
+/*:
+ ## Problem 12-
+
+ ****
+
+*/
+
