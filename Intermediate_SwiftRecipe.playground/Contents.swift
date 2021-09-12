@@ -1124,7 +1124,7 @@ print(arrayStride)
  **Create an empty array**
 */
 
-let arrayLiteral = [1, 2, 3, 3, 4, 6, 8, 8]
+var arrayLiteral = [1, 2, 3, 3, 4, 6, 8, 8]
 
 
 /*:
@@ -1315,14 +1315,390 @@ print(arrayLiteral.count)
 /*:
  ## Problem 8-37
 
- **I want to get the index of a specific element in a given array by its value.**
+ **I want to retrieve a tuple element by its index.**
 
 */
+
+let point = (2, 3, 4)
+print(point.2)
 
 
 /*:
- ## Problem 8-26
+ ## Problem 8-38
 
- **I want to get the index of a specific element in a given array by its value.**
+ **I want to get a specific tuple element by matching against a given pattern.**
 
 */
+
+let (x, y, z) = point
+print(y)
+
+/*:
+ ## Problem 8-39
+
+ **I want to insert an element at a specific array index.**
+
+*/
+
+arrayLiteral.insert(100, at: 3)
+print(arrayLiteral)
+
+/*:
+ ## Problem 8-40
+
+ **I want to join the elements of a string array, using a specific separator.**
+
+ ### IMPORTANT: it working only string array
+
+*/
+
+let joinArray = ["one", "two", "three"]
+
+let joinString = joinArray.joined(separator: ",")
+print(joinString)
+
+
+/*:
+ ## Problem 8-41, 8-52
+
+ **I want to loop through an array’s element in reverse..**
+
+ **I want to reverse an array’s elements.**
+
+*/
+
+print(arrayLiteral.reversed())
+
+/*:
+ ## Problem 8-42
+
+ **I want to loop through an array’s elements and keep track of the element’s index at the same time.**
+
+*/
+
+for (index, element) in arrayLiteral.enumerated() {
+    print("\(index): \(element)")
+}
+
+/*:
+ ## Problem 8-43
+
+ **I want to loop through an array’s elements.**
+
+*/
+
+for element in arrayLiteral {
+    print(element)
+}
+
+
+/*:
+ ## Problem 8-44
+
+ **I want to map an array’s values to a new array using a specific function..**
+
+*/
+
+let multiply2ArrayLiteral = arrayLiteral.map{ $0 * 2 }
+
+print(multiply2ArrayLiteral)
+
+/*:
+ ## Problem 8-45
+
+ **I want to retrieve the last element from an array, and remove it from that array.**
+
+ The Difference between popLast() give optional if value is not there than it return nil
+
+ Whereas
+
+ removeLast() give value, if value is not present it crashes
+
+*/
+
+let lastItem = arrayLiteral.popLast()
+print(lastItem)
+
+let lastItemRemove = arrayLiteral.removeLast()
+print(lastItemRemove)
+
+
+/*:
+ ## Problem 8-46
+
+ **I want to add an element at the beginning of a given array.**
+
+*/
+
+arrayLiteral.insert(234, at: 0)
+print(arrayLiteral)
+
+
+/*:
+ ## Problem 8-47
+
+ **I want to “reduce” an array of numbers to a single value.**
+
+*/
+
+let sumArrayLiteralValue = arrayLiteral.reduce(0){ $0 + $1 }
+print(sumArrayLiteralValue)
+
+
+/*:
+ ## Problem 8-48
+
+ **I want to remove all elements from a given array..**
+
+*/
+
+var arrayListDemo = [1, 2, 3, 4, 5]
+print(arrayListDemo)
+
+arrayListDemo.removeAll()
+print(arrayListDemo)
+
+
+/*:
+ ## Problem 8-49
+
+ **I want to remove a specific element from a given array, by its index.**
+
+*/
+
+arrayLiteral.remove(at: 3)
+print(arrayLiteral)
+
+/*:
+ ## Problem 8-50
+
+ **I want to remove a specific element from a given array, by its value..**
+
+*/
+
+arrayLiteral.removeAll { $0 == 234 }
+
+print(arrayLiteral)
+
+
+/*:
+ ## Problem 8-51
+
+ **I want to remove all duplicate elements from a given array.**
+
+*/
+
+var setRemoveDuplicate: Set<Int> = Set(arrayLiteral)
+print(setRemoveDuplicate)
+
+
+/*:
+ ## Problem 8-55
+
+ **I want to – randomly – shuffle an array’s elements.**
+
+*/
+
+arrayLiteral.shuffle()
+print("shuffled Array \(arrayLiteral)")
+
+
+/*:
+ ## Problem 8-56, 8-57
+
+ **I want to sort a given array of dictionaries, by some specific dictionary field, in ascending order.**
+
+ **I want to sort a given array of dictionaries, by some specific dictionary field, in descending order.**
+
+*/
+
+var members = [ ["name": "John", "age": 30],
+                ["name": "Jane", "age": 39],
+                ["name": "Angela", "age": 18],
+                ["name": "Nick", "age": 59],
+        ]
+
+let ascendingSortedList = members.sorted { (memeber1, member2) -> Bool in
+    (memeber1["age"] as! Int) < (member2["age"] as! Int)
+}
+
+print(ascendingSortedList)
+
+
+let descendingSortedList = members.sorted { (memeber1, member2) -> Bool in
+    (memeber1["age"] as! Int) > (member2["age"] as! Int)
+}
+
+print(descendingSortedList)
+
+/*:
+ ## Problem 8-62
+
+ **I want to swap two elements in a given array, specifying their indices.**
+
+*/
+
+arrayLiteral.swapAt(2, 5)
+print(arrayLiteral)
+
+
+/*:
+ ## Problem 8-65
+
+ **I want to check if a given set contains a specific element.**
+
+*/
+
+print(setRemoveDuplicate.contains(100))
+
+/*:
+ ## Problem 8-66
+
+ **I want to check if a given set is empty.**
+
+*/
+
+print(setRemoveDuplicate.isEmpty)
+
+
+/*:
+ ## Problem 8-67, 8-68, 8-69, 8-70
+
+ **I want to check if a given set is a strict subset of another set.**
+
+ **I want to check if a given set is a strict superset of another set.**
+
+ **I want to check if a given set is a subset of another set.**
+
+ **I want to check if a given set is a superset of another set.**
+
+
+
+*/
+print(setRemoveDuplicate)
+let subsetValue: Set<Int> = [2, 3, 4]
+print(subsetValue.isStrictSubset(of: setRemoveDuplicate))
+
+print(setRemoveDuplicate.isStrictSuperset(of: subsetValue))
+
+print(subsetValue.isSubset(of: setRemoveDuplicate))
+
+print(setRemoveDuplicate.isSuperset(of: subsetValue))
+
+
+/*:
+ ## Problem 8-71
+
+ **I want to check if two different sets are equal.**
+
+*/
+
+print(subsetValue == setRemoveDuplicate)
+
+
+/*:
+ ## Problem 8-72
+
+ **I want to check if two different sets have common elements.**
+
+*/
+
+if  setRemoveDuplicate.isDisjoint(with: subsetValue) {
+    print("They has no common memeber")
+} else {
+    print("They have a common memeber")
+}
+
+
+/*:
+ ## Problem 8-73
+
+ **I want to create an empty Set object.**
+
+*/
+
+let emptySet: Set<Int> = []
+print(emptySet)
+
+
+/*:
+ ## Problem 8-74
+
+ **I want to create an NSSet object from a given set..**
+
+*/
+
+let nsSet = NSSet(set: setRemoveDuplicate)
+print(nsSet)
+
+/*:
+ ## Problem 8-75
+
+ **I want to find the difference of two different sets.**
+
+*/
+
+print(setRemoveDuplicate.subtracting(subsetValue))
+
+
+/*:
+ ## Problem 8-76
+
+ **I want to find the intersection of two different sets.**
+
+*/
+
+print(setRemoveDuplicate.intersection(subsetValue))
+
+
+/*:
+ ## Problem 8-77
+
+ **I want to find the symmetric difference of two different sets.**
+
+*/
+
+print(setRemoveDuplicate.symmetricDifference(subsetValue))
+
+
+/*:
+ ## Problem 8-76
+
+ **I want to find the union of two different sets.**
+
+*/
+
+print(setRemoveDuplicate.union(subsetValue))
+
+
+
+/*:
+ ## Problem 8-44
+
+ **I want to get the size of a given set**
+
+*/
+
+print(setRemoveDuplicate.count)
+
+/*:
+ ## Problem 8-44
+
+ **I want to loop through a given set’s elements.**
+
+*/
+
+
+for element in setRemoveDuplicate {
+    print(element)
+}
+
+/*:
+ ## Problem 8-44
+
+ **I want to remove all elements from a given set.**
+
+*/
+
+setRemoveDuplicate.removeAll()
+print(setRemoveDuplicate)
